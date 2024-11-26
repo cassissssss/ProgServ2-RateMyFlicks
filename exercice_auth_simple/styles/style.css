@@ -1,0 +1,119 @@
+/* Style général */
+body {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+/* Style pour la barre de navigation */
+.navbar {
+  background-color: #333;
+  overflow: hidden;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 20px;
+  text-decoration: none;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+}
+
+/* Changer de couleur au survol */
+.navbar a:hover {
+  background-color: #575757;
+}
+
+/* Activer l'élément actif (optionnel) */
+.navbar a.active {
+  background-color: #4caf50;
+}
+
+/* Style pour le contenu principal */
+.main {
+  padding: 20px;
+  text-align: center;
+}
+
+/* Style pour le conteneur de formulaire */
+.form-container {
+  margin: auto;
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  width: 300px;
+}
+
+/* Style pour les champs de formulaire */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+/* Style pour le bouton de soumission */
+input[type="submit"] {
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+input[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+#disconnect-form{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#disconnect{
+  background-color: #ffffff00;
+}
+
+/* Style pour le label */
+label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+  float: left;
+}
+
+.err{
+  background-color: red;
+}
+
+.msg{
+  background-color: green
+}
+
+.account-created{
+  background-color: green;
+}
+
+.account-created, .err{
+  width: 300px;
+  margin:auto;
+  padding: 10px;
+  color:white;
+  border-radius: 10px;
+}
