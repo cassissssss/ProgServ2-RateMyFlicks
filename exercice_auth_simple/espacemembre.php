@@ -3,6 +3,7 @@
 session_start();
 //phpinfo();
 require_once('./config/autoload.php');
+
 use functionnalities\DbManagerCRUD;
 
 if (filter_has_var(INPUT_POST, "disconnect")) {
