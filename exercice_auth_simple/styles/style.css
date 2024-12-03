@@ -27,10 +27,6 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.nav-right a:hover {
-  background-color: #575757;
-}
-
 .navbar .nav-right {
   margin-left: auto;
 }
@@ -45,18 +41,20 @@ body {
   transition: background-color 0.3s ease;
 }
 
-.navbar a:hover {
-  background-color: #575757;
-}
-
-.navbar a.active {
-  background-color: #4caf50;
+.navbar a.active,
+a:hover {
+  color: #3babda;
 }
 
 /* Style pour le contenu principal */
 .main {
+  display: flex;
+  min-height: 80vh;
   padding: 20px;
   text-align: center;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Style pour le conteneur de formulaire */
@@ -119,6 +117,11 @@ label {
   margin-top: 10px;
   display: block;
   float: left;
+}
+
+.TitleWelcome {
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .err {

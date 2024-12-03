@@ -8,6 +8,8 @@ use functionnalities\DbManagerCRUD;
 
 require_once('lang' . DIRECTORY_SEPARATOR . 'lang_func.php');
 
+$currentLang = getLanguage();
+
 $msg = [];
 $err = [];
 
@@ -57,62 +59,32 @@ if (filter_has_var(INPUT_POST, "submit")) {
   }
 }
 
-
+include "./composants/header/header.php";
 ?>
-<!DOCTYPE html>
-<html lang="<?php echo $currentLang; ?>">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="./styles/style.css" rel="stylesheet">
-  <title><?php echo t('loginTitle');
-          ?></title>
-</head>
-
-<body>
-  <div class="navbar">
-    <a href="./index.php"><?php echo t('home'); ?></a>
-    <?php if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) { ?>
-      <a href="./espacemembre.php"><?php echo t('memberArea'); ?></a>
-      <form id="disconnect-form" method="post" action="./index.php" class="nav-right">
-        <input id="disconnect" type="submit" name="disconnect" value="<?php echo t('logout'); ?>">
-      </form>
-    <?php } else { ?>
-      <a href="./connexion.php" class="active"><?php echo t('loginTitle'); ?></a>
-      <a href="./creercompte.php"><?php echo t('createAccount'); ?></a>
-      <div class="nav-right">
-        <?php if (getLanguage() === 'fr') { ?>
-          <a href="?lang=en">EN</a>
-        <?php } else { ?>
-          <a href="?lang=fr">FR</a>
-        <?php } ?>
+<div class="main">
+  <div>
+    <div>
+      <h1 class="TitleWelcome"><?php echo t('login');
+                                ?></h1>
+      <div class="err" <?php if (!$err) echo "style='display: none';"; ?>>
+        <?php
+        foreach ($err as $erreur) {
+          echo "<p>" . $erreur . "</p>";
+        }
+        ?>
       </div>
-    <?php } ?>
-  </div>
 
-
-  <div class="main">
-    <h1><?php echo t('login');
-        ?></h1>
-
-    <div class="err" <?php if (!$err) echo "style='display: none';"; ?>>
-      <?php
-      foreach ($err as $erreur) {
-        echo "<p>" . $erreur . "</p>";
-      }
-      ?>
+      <div class="msg" <?php if (!$msg) echo "style='display: none';"; ?>>
+        <?php
+        foreach ($msg as $message) {
+          echo "<p>" . $message . "</p>";
+        }
+        ?>
+      </div>
     </div>
-
-    <div class="msg" <?php if (!$msg) echo "style='display: none';"; ?>>
-      <?php
-      foreach ($msg as $message) {
-        echo "<p>" . $message . "</p>";
-      }
-      ?>
-    </div>
-
     <div class="form-container">
+
       <form action="connexion.php" method="post">
         <label for="email"><?php echo t('email');
                             ?></label>
@@ -127,6 +99,8 @@ if (filter_has_var(INPUT_POST, "submit")) {
       </form>
     </div>
   </div>
+
+</div>
 </body>
 
 </html>
