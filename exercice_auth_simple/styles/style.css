@@ -1,18 +1,38 @@
 /* Style général */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poppins", Arial, sans-serif;
   width: 100%;
   margin: 0;
   padding: 0;
   background-color: #f4f4f4;
 }
 
-/* Style pour la barre de navigation */
 .navbar {
   background-color: #333;
   overflow: hidden;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+}
+.nav-right {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.nav-right a {
+  color: white;
+  text-decoration: none;
+  padding: 14px 20px;
+  font-size: 17px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-right a:hover {
+  background-color: #575757;
+}
+
+.navbar .nav-right {
+  margin-left: auto;
 }
 
 .navbar a {
@@ -25,12 +45,10 @@ body {
   transition: background-color 0.3s ease;
 }
 
-/* Changer de couleur au survol */
 .navbar a:hover {
   background-color: #575757;
 }
 
-/* Activer l'élément actif (optionnel) */
 .navbar a.active {
   background-color: #4caf50;
 }
@@ -64,56 +82,62 @@ input[type="password"] {
   box-sizing: border-box;
 }
 
+input:focus-visible {
+  outline: #3babda auto 1px;
+}
 /* Style pour le bouton de soumission */
 input[type="submit"] {
   width: 100%;
-  background-color: #4caf50;
+  background-color: #3babda;
   color: white;
   padding: 10px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 input[type="submit"]:hover {
-  background-color: #45a049;
+  background-color: #2f86ac;
 }
 
-#disconnect-form{
-  display:flex;
+#disconnect-form {
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#disconnect{
+#disconnect {
   background-color: #ffffff00;
 }
 
 /* Style pour le label */
 label {
-  font-weight: bold;
+  font-size: 14px;
   margin-top: 10px;
   display: block;
   float: left;
 }
 
-.err{
+.err {
   background-color: red;
 }
 
-.msg{
-  background-color: green
-}
-
-.account-created{
+.msg {
   background-color: green;
 }
 
-.account-created, .err{
+.account-created {
+  background-color: green;
+}
+
+.account-created,
+.err {
   width: 300px;
-  margin:auto;
+  margin: auto;
   padding: 10px;
-  color:white;
+  color: white;
   border-radius: 10px;
 }

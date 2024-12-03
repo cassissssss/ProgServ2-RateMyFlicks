@@ -4,6 +4,7 @@ session_start();
 
 //phpinfo();
 require_once('./config/autoload.php');
+
 use functionnalities\DbManagerCRUD;
 use functionnalities\Personne;
 use functionnalities\EmailManager;
@@ -65,7 +66,7 @@ if (filter_has_var(INPUT_POST, "submit")) {
             $isAccountCreated = true;
             if ($isTokenUpdated > 0) {
                 $personne = $db->rendPersonneEmail($personne->rendEmail());
-                EmailManager::sendValidationEmail($personne[0],$token);
+                EmailManager::sendValidationEmail($personne[0], $token);
                 header(".\connexion.php");
             }
         } else if ($id === -1) {
@@ -114,7 +115,7 @@ if (filter_has_var(INPUT_POST, "submit")) {
         <h1>Créer votre compte</h1>
 
         <div class="err" <?php if (!$err)
-            echo "style='display: none';"; ?>>
+                                echo "style='display: none';"; ?>>
             <?php
             if ($err) {
                 foreach ($err as $erreur) {
@@ -125,7 +126,7 @@ if (filter_has_var(INPUT_POST, "submit")) {
         </div>
 
         <div class="account-created" <?php if (!$isAccountCreated)
-            echo "style='display: none';"; ?>>
+                                            echo "style='display: none';"; ?>>
             <?php
             if ($isAccountCreated) {
                 echo "<p>Le compte a bien été créé</p>";
@@ -136,7 +137,7 @@ if (filter_has_var(INPUT_POST, "submit")) {
 
         <!-- Formulaire de création de compte -->
         <div class="form-container" <?php if ($isAccountCreated)
-            echo "style='display: none';"; ?>>
+                                        echo "style='display: none';"; ?>>
             <form action="creercompte.php" method="post">
                 <label for="nom">Nom</label>
                 <input type="text" id="nom" name="nom" placeholder="Doe">
@@ -153,7 +154,7 @@ if (filter_has_var(INPUT_POST, "submit")) {
                 <label for="password">Mot de passe</label>
                 <input type="password" id="password" name="password">
 
-                <input type="submit" name="submit" value="envoyer">
+                <input type="submit" name="submit" value="Envoyer">
             </form>
         </div>
 
