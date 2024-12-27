@@ -185,5 +185,16 @@ COMMANDE_SQL;
 
         return $hash;
     }
-
+    public function checkEmailExists($email)
+    {
+        $query = $this->db->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+        $query->execute(['email' => $email]);
+        return $query->fetchColumn() > 0;
+    }
+    public function checkPhoneExists($phone)
+    {
+        $query = $this->db->prepare("SELECT COUNT(*) FROM users WHERE telephone = :phone");
+        $query->execute(['phone' => $phone]);
+        return $query->fetchColumn() > 0;
+    }
 }
