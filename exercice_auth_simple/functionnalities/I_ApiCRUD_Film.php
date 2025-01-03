@@ -1,6 +1,6 @@
 <?php
 
-namespace ch\comem;
+namespace functionnalities;
 
 interface I_ApiCRUD_Film {
     /**
@@ -81,4 +81,4 @@ interface I_ApiCRUD_Film {
      * @return array tableau des films 
      */
     public function rendFilmsNotes(): array;
-}   // rendre toutes les infos des films
+}  

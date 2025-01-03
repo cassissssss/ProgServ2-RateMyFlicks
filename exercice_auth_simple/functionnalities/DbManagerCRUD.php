@@ -2,7 +2,6 @@
 
 namespace functionnalities;
 
-use ch\comem\I_ApiCRUD_Film;
 use Exception;
 
 class DbManagerCRUD implements I_ApiCRUD, I_ApiCRUD_Film
