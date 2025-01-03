@@ -331,6 +331,19 @@ COMMANDE_SQL;
             }
         }
         return $tabFilm;
+    }  
+    public function checkEmailExists($email)
+    {
+        $query = $this->db->prepare("SELECT COUNT(*) FROM users WHERE email = :email");
+        $query->execute(['email' => $email]);
+        return $query->fetchColumn() > 0;
     }
-}   // rendre toutes les infos des films
+    public function checkPhoneExists($phone)
+    {
+        $query = $this->db->prepare("SELECT COUNT(*) FROM users WHERE telephone = :phone");
+        $query->execute(['phone' => $phone]);
+        return $query->fetchColumn() > 0;
+    }
+}
+
 

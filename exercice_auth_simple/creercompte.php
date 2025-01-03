@@ -93,7 +93,7 @@ include "./composants/header/header.php";
             foreach ($err as $erreur) {
                 echo "<p>" . $erreur . "</p>";
             }
-        }
+        } 
         ?>
     </div>
 

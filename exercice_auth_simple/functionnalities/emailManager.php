@@ -27,7 +27,7 @@ class EmailManager
                 ->to($destinator->rendEmail())
                 ->subject('Account creation validation')
                 ->text('Veuillez confirmer la création du compte')
-                ->html("<a href=http://localhost/deuxieme_annee/exercice_auth_simple/confirmation.php?token=$token>Confirmer la création du compte</a>");
+                ->html("<a href=http://localhost:8888/ProgServ2-RateMyFlicks/exercice_auth_simple/confirmation.php?token=$token>Confirmer la création du compte</a>");
             try{
                 $mailer->send($email);
             }catch(Exception $e){
