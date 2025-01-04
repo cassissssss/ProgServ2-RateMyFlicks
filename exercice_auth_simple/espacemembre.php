@@ -6,77 +6,77 @@ require_once('./config/autoload.php');
 
 use functionnalities\DbManagerCRUD;
 
-if (filter_has_var(INPUT_POST, "disconnect")) {
-    $_SESSION = array();
-    session_destroy();
-    header("Location: ./index.php");
+// Vérification si l'utilisateur est connecté
+if (!isset($_SESSION["isConnected"]) || !$_SESSION["isConnected"]) {
+    header("Location: ./connexion.php");
     exit();
 }
 
-if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
-    $db = new DbManagerCRUD();
+// Récupération des informations de l'utilisateur
+$db = new DbManagerCRUD();
+$user = $db->rendPersonneEmail($_SESSION["userEmail"]);
 
-    $users = $db->rendPersonneEmail($_SESSION["userEmail"]);
-}
-
+// Inclusion du header
+require_once('lang' . DIRECTORY_SEPARATOR . 'lang_func.php');
+$currentLang = getLanguage();
+include "./composants/header/header.php";
 ?>
 
-<!DOCTYPE html>
-<html lang="fr">
+<div class="main">
+    <div class="profile-container">
+        <h1><?php echo t('profileTitle'); ?></h1>
+        
+        <!-- Informations du profil -->
+        <div class="profile-info">
+            <h2><?php echo t('personalInfo'); ?></h2>
+            <p><strong><?php echo t('fullName'); ?>:</strong> 
+                <?php echo htmlspecialchars($user[0]->rendPrenom() . ' ' . $user[0]->rendNom()); ?>
+            </p>
+            <p><strong><?php echo t('email'); ?>:</strong> 
+                <?php echo htmlspecialchars($user[0]->rendEmail()); ?>
+            </p>
+            <p><strong><?php echo t('phone'); ?>:</strong> 
+                <?php echo htmlspecialchars($user[0]->rendNoTel()); ?>
+            </p>
+        </div>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./styles/style.css" rel="stylesheet">
-    <title>Espace membre top secret</title>
-</head>
+        <!-- Changer le mot de passe -->
+        <div class="change-password">
+            <form method="post" action="./changermdp.php">
+                <input type="submit" name="changePassword" value="<?php echo t('Mot de passe oublié ?'); ?>" class="change-password-btn">
+            </form>
+        </div>
 
-<body>
-    <!-- Barre de navigation -->
-    <div class="navbar">
-        <a href="./index.php">Accueil</a>
-        <?php
-        if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
-            echo <<<HEREDOC
-        <a href="./espacemembre.php" class="active">Espace membre</a>
-        <form id="disconnect-form" method="post" action="./index.php">
-        <input id="disconnect" type="submit" name="disconnect" value="Déconnexion">
-        </form>
-        HEREDOC;
-        } else {
-            echo <<<HEREDOC
-        <a href="./connexion.php">Connexion</a>
-        <a href="./creercompte.php">Créer un compte</a>
-        HEREDOC;
-        }
-        ?>
+        <!-- Films notés/aimés -->
+        <div class="rated-movies">
+            <h2><?php echo t('ratedMovies'); ?></h2>
+            <?php
+            $films = $db->rendFilmsNotesParUtilisateur($user[0]->rendId());
+            if (!empty($films)) {
+                echo '<ul class="movies-list">';
+                foreach ($films as $film) {
+                    echo '<li class="movie-item">';
+                    echo '<h3>' . htmlspecialchars($film->rendTitre()) . '</h3>';
+                    echo '<p>' . t('director') . ': ' . htmlspecialchars($film->rendDirecteur()) . '</p>';
+                    echo '<p>' . t('year') . ': ' . htmlspecialchars($film->rendAnnee()) . '</p>';
+                    // Ajoutez ici la note donnée par l'utilisateur si disponible
+                    echo '</li>';
+                }
+                echo '</ul>';
+            } else {
+                echo '<p>' . t('noRatedMovies') . '</p>';
+            }
+            ?>
+        </div>
+
+        <!-- Bouton de déconnexion -->
+        <div class="logout-section">
+            <form method="post" action="./index.php">
+                <input type="submit" name="disconnect" value="<?php echo t('logout'); ?>" class="logout-btn">
+            </form>
+        </div>
     </div>
+</div>
 
-    <div class="main">
-        <?php if (isset($_SESSION["isConnected"]) && $_SESSION["isConnected"]) {
-            echo <<<HEREDOC
-        <h1>Espace membre top secret</h1>
-        <button id="topsecret">Bouton top secret</button>
-        <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
-        <script>
-            const secretButton = document.querySelector("#topsecret")
-            secretButton.addEventListener("click", () => {
-                confetti({
-                    particleCount: 100,
-                    startVelocity: 30,
-                    spread: 360,
-                });
-            })
-        </script>
-        HEREDOC;
-        } else {
-            echo <<<HEREDOC
-        <h1>Vous n'avez pas accès à l'espace membre top secret</h1>
-        <a href="./connexion.php">Veuillez vous connecter</a>
-        HEREDOC;
-        }
-        ?>
-    </div>
 </body>
-
 </html>

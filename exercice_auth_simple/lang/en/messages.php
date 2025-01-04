@@ -12,4 +12,13 @@ return array(
 	'email' => 'Email',
 	'password' => 'Password',
 	'submit' => 'Sign In',
+	'profileTitle' => 'My Profile',
+	'personalInfo' => 'Personal Information',
+	'fullName' => 'Full name',
+	'phone' => 'Phone',
+	'ratedMovies' => 'Rated Movies',
+	'director' => 'Director',
+	'year' => 'Year',
+	'noRatedMovies' => 'You haven\'t rated any movies yet',
+	'logout' => 'Logout',
 );

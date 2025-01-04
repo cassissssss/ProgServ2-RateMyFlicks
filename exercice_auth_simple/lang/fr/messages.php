@@ -12,4 +12,13 @@ return array(
     'email' => 'Email',
     'password' => 'Mot de passe',
     'submit' => 'Envoyer',
+    'profileTitle' => 'Mon Profil',
+    'personalInfo' => 'Informations Personnelles',
+    'fullName' => 'Nom complet',
+    'phone' => 'Téléphone',
+    'ratedMovies' => 'Films notés',
+    'director' => 'Réalisateur',
+    'year' => 'Année',
+    'noRatedMovies' => 'Vous n\'avez pas encore noté de films',
+    'logout' => 'Déconnexion',
 );
