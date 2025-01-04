@@ -284,8 +284,27 @@ COMMANDE_SQL;
      * @param mixed $limit nombre de films a rendre
      * @return array tableau des films
      */
-    public function rendFilmsMieuxNotes($limit = 10): array{
-        return [];
+    public function rendFilmsMieuxNotes($limit = 10): array {
+        $sql = "SELECT m.* FROM movies m 
+                LEFT JOIN Ratings r ON m.id = r.movie_id 
+                GROUP BY m.id 
+                ORDER BY AVG(COALESCE(r.rating, 0)) DESC, m.imdb_score DESC 
+                LIMIT :limit";
+                
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam('limit', $limit, \PDO::PARAM_INT);
+        $stmt->execute();
+        $donnees = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->listFilms($donnees);
+    }
+
+    public function rendFilmsRecents($limit = 20): array {
+        $sql = "SELECT * FROM movies ORDER BY year DESC LIMIT :limit";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bindParam('limit', $limit, \PDO::PARAM_INT);
+        $stmt->execute();
+        $donnees = $stmt->fetchAll(\PDO::FETCH_ASSOC);
+        return $this->listFilms($donnees);
     }
     //films notés par un utilisateur
     /**

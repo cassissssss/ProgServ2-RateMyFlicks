@@ -1,6 +1,6 @@
 <?php
 
-namespace ch\comem;
+namespace functionnalities;
 
 use \Exception;
 

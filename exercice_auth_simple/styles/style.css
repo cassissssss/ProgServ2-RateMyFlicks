@@ -195,3 +195,64 @@ label {
 .logout-btn:hover {
     background-color: #c82333;
 }
+
+.mainfilm {
+  display: flex;
+  max-width: 1500px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+/* Style moderne pour la grille de films */
+div.mainfilm .movies-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Exactement 5 colonnes */
+  gap: 1.5rem;
+  padding: 2rem;
+  max-width: 1500px;
+  margin: 0 auto;
+  z-index: 1; /* Ajout pour résoudre le problème de superposition */
+}
+
+/* Style des cartes de films */
+div.mainfilm .movie-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+  overflow: hidden;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* En-tête de la carte avec le titre */
+.movie-card h3 {
+  font-size: 1rem;
+  margin: 0;
+  padding: 1rem;
+  color: #333;
+  font-weight: 600;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* Informations du film */
+.movie-info {
+  padding: 1rem;
+}
+
+.movie-info p {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.4;
+}
+
+.movie-info strong {
+  color: #333;
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
