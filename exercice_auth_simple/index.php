@@ -16,24 +16,25 @@ $db = new DbManagerCRUD();
 // Récupérer les films les mieux notés, sinon les films récents
 $films = $db->rendFilmsMieuxNotes(50);
 if (empty($films)) {
-    $films = $db->rendFilmsRecents(50);
+    $films = $db->rendFilmsRecents(10);
 }
 
 include "./composants/header/header.php";
 ?>
+    <h1><?php echo t('home'); ?></h1>
+
 <!-- Contenu principal -->
 <div class="mainfilm">
-    <h1><?php echo t('home'); ?></h1>
     
     <div class="movies-grid">
         <?php foreach ($films as $film): ?>
             <div class="movie-card">
-                <h3><?php echo htmlspecialchars($film->rendTitle()); ?></h3>
+                <h2><?php echo htmlspecialchars($film->rendTitle()); ?></h2>
                 <div class="movie-info">
                     <p><strong><?php echo t('director'); ?>:</strong> <?php echo htmlspecialchars($film->rendDirector()); ?></p>
                     <p><strong><?php echo t('year'); ?>:</strong> <?php echo htmlspecialchars($film->rendYear()); ?></p>
                     <p><strong><?php echo t('genres'); ?>:</strong> <?php echo htmlspecialchars($film->rendGenres()); ?></p>
-                    <p><strong>IMDB:</strong> <?php echo htmlspecialchars($film->rendImdbScore()); ?>/10</p>
+                    <p><strong>🌟:</strong> <?php echo htmlspecialchars($film->rendImdbScore()); ?>/10</p>
                 </div>
             </div>
         <?php endforeach; ?>

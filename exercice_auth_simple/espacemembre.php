@@ -43,7 +43,7 @@ include "./composants/header/header.php";
         <!-- Changer le mot de passe -->
         <div class="change-password">
             <form method="post" action="./changermdp.php">
-                <input type="submit" name="changePassword" value="<?php echo t('Mot de passe oublié ?'); ?>" class="change-password-btn">
+                <input type="submit" name="changePassword" value="<?php echo t('Mdp oublié ?'); ?>" class="change-password-btn">
             </form>
         </div>
 

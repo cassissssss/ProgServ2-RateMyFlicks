@@ -206,7 +206,7 @@ label {
 /* Style moderne pour la grille de films */
 div.mainfilm .movies-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* Exactement 5 colonnes */
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
   padding: 2rem;
   max-width: 1500px;
@@ -229,12 +229,11 @@ div.mainfilm .movie-card {
 }
 
 /* En-tête de la carte avec le titre */
-.movie-card h3 {
+.movie-card h2 {
   font-size: 1rem;
   margin: 0;
   padding: 1rem;
   color: #333;
-  font-weight: 600;
   text-align: center;
   border-bottom: 1px solid #eee;
 }

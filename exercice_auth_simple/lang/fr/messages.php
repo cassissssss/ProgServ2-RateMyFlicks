@@ -21,4 +21,5 @@ return array(
     'year' => 'Année',
     'noRatedMovies' => 'Vous n\'avez pas encore noté de films',
     'logout' => 'Déconnexion',
+    'genres' => 'Genres',
 );

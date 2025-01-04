@@ -21,4 +21,5 @@ return array(
 	'year' => 'Year',
 	'noRatedMovies' => 'You haven\'t rated any movies yet',
 	'logout' => 'Logout',
+	'genres' => 'Genres',
 );
